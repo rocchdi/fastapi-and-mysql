@@ -62,7 +62,6 @@ mysql_password = os.getenv("mysql_password")
 
 
 # recreating the URL connection
-#connection_url = 'mysql://{user}:{password}@{url}/{database}'.format(
 connection_url = 'mysql+pymysql://{user}:{password}@{url}/{database}'.format(
     user=mysql_user,
     password=mysql_password,
@@ -73,10 +72,10 @@ connection_url = 'mysql+pymysql://{user}:{password}@{url}/{database}'.format(
 
 
 # creating a User class
-class User(BaseModel):
-    user_id: int = 0
-    username: str = 'daniel'
-    email: str = 'daniel@datascientest.com'
+class titles(BaseModel):
+    title_id: int = 0
+    title: str = ''
+    description: str = ''
 
 
 @apimysql.get('/status')
@@ -123,42 +122,36 @@ def get_titles():
 
 
 
-#    with mysql_engine.connect() as connection:
-#        results = connection.execute('SELECT * FROM titles limit 10;')
-
+# pour la prochaine version
 #    results = [
-#        User(
-#            user_id=i[0],
-#            username=i[1],
-#            email=i[2]
+#        Titles(
+#            title_id=i[0],
+#            title=i[1],
+#            description=i[2]
 #            ) for i in results.fetchall()]
 
-
-#    if not results:
-#        raise MyException(name="users not found")
-#    return results
 
     
 
 
 
-#@server.get('/users/{user_id:int}', response_model=User)
-#async def get_user(user_id):
+#@apimysql.get('/titles/{title_id:int}', response_model=User)
+#async def get_title(title_id):
 #    with mysql_engine.connect() as connection:
 #        results = connection.execute(
-#            'SELECT * FROM Users WHERE Users.id = {};'.format(user_id))
+#            'SELECT * FROM titles WHERE titles.SHOW_ID = {};'.format(title_id))
 
 #    results = [
-#        User(
-#            user_id=i[0],
-#            username=i[1],
-#            email=i[2]
+#        Title(
+#            title_id=i[0],
+#            title=i[1],
+#            description=i[2]
 #            ) for i in results.fetchall()]
 
 #    if len(results) == 0:
 #        raise HTTPException(
 #            status_code=404,
-#            detail='Unknown User ID')
+#            detail='Unknown title ID')
 #    else:
 #        return results[0]
 
