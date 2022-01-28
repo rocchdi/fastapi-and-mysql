@@ -1,1 +1,1 @@
-# mysql_fastapi_repo
+# mysql-fastapi-repo
