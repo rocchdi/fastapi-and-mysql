@@ -1,6 +1,7 @@
 import sqlalchemy
 from sqlalchemy import Table, Column, SmallInteger, String, MetaData, create_engine, text, inspect
 from sqlalchemy import exc
+mport pymysql as mysql
 
 
 # creating a connection to the database
@@ -10,7 +11,7 @@ mysql_password = '1234'
 database_name = 'netflix'
 
 # recreating the URL connection
-connection_url = 'mysql+mysqlconnector://{user}:{password}@{url}/{database}'.format(
+connection_url = 'mysql+pymysql://{user}:{password}@{url}'.format(
     user=mysql_user,
     password=mysql_password,
     url=mysql_url,
