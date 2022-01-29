@@ -15,8 +15,12 @@ https://www.kaggle.com/shivamb/netflix-shows/version/5
 
 
 # Data Preparation
-The kaggle csv file cannot be used and loaded directly into the netflix database. In this step we handle the kaggle file in order to ignore some charaters and generate a csv file with fields
-separated by semi columns
+The kaggle csv file cannot be used and loaded directly into the netflix database. In this step we handle the kaggle file called " netflix_titles.csv" in order to ignore the quotation marks and generate a csv file called "titles.csv" with fields separated by semi columns. 
+
+You have to install pandas library, download the csv file from the above url (or from the csv_preparation folder) and then run the following python file :
+```
+python3 prepare_csv.py
+```
 
 
 # Using Mysql docker image as our Netflix Database environment
@@ -29,14 +33,30 @@ docker run --name mysql_database -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -p 330
 
 # Loading the csv data file into our Netflix database
 In this step we create a database called Netflix and then load the csv kaggle file into a relational database table called "titles" using the "'LOAD DATA LOCAL INFILE" sql order.
-we use python scripts in order to populate the database table
+we use python scripts in order to create and populate the database table.
 
 ```
 LOAD DATA LOCAL INFILE "titles.csv" INTO TABLE titles FIELDS TERMINATED BY ";" LINES TERMINATED BY "\\n" STARTING BY "s" IGNORE 1 LINES;
 ```
 
-# The Database initial schema
-The movie titles from the csv data file are now loaded in the "titles" table. Here is an example of the table schema and content :
+
+# How to run the database loading  in your machine using a python virtual environment
+
+create a new python virtual environment, install the requirements (see database_creation_populating folder) :
+```
+pip install -r requirements_sql.txt 
+```
+
+and then install the titles.csv" file and run the following : 
+
+```
+python3 create_database.py
+python3 create_table_from_csv.py
+```
+
+
+# The Table Schema and Content
+The movie titles (from the csv data file) are now loaded in the "titles" table. Here is an example of the table schema and content :
 ```
 "SHOW_ID": "s5"
 "TYPE": "TV Show"
@@ -53,17 +73,22 @@ The movie titles from the csv data file are now loaded in the "titles" table. He
 ```
 
 
-# Database Modeling from the titles table
-In order to separate the different information stored in the titles table we use the following database tables :
+# Constructing new database tables from the "titles" table
+We could use the "titles" table as our relational database, but in order to separate the different information stored in this "titles" table and construct it in a logical way  we model the following database tables:
 ```
 show table (SHOW_ID (PRIMARY KEY), TYPE, TITLE, COUNTRY, DATE_ADDED, RELEASE_YEAR, DURATION, DESCRIPTION)
 Rating table (SHOW_ID (PRIMARY KEY), RATING)
 crew table (SHOW_ID (PRIMARY KEY), DIRECTOR, CAST) 
 ```
 
+----- to be completed ----
+
+
 
 # The Fast API image
-The FAst API image is already created and puched to the DockerHub repository : 
+We use a Fastapi API in order to query our Netflix Mysql database
+For example, we can display some movie titles i from the database or find the country where a movie has been made
+The FAst API image is also created and puched to the DockerHub repository : 
 ```
 rocchdi/apimysql:1.0.0
 ```
@@ -78,8 +103,10 @@ create a new python virtual environment, install the requirements :
 ```
 pip install -r requirements.txt
 ```
-Copy  all files in the projet root , the .py files (the code)
-and also the .csv files (netflix data) in your machine. To run the API : 
+Copy the main.py file (see fastapi_mysql folder)
+The Mysql database container is supposed to be running in your machine and the Netflix database created and populated. 
+
+To run the API : 
 ```
 uvicorn main:apimysql --reload
 ```
