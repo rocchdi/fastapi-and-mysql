@@ -1,6 +1,10 @@
 import sqlalchemy
 from sqlalchemy import create_engine, text
 from sqlalchemy import exc
+import pymysql as mysql
+
+
+
 
 
 # creating a connection to the database
@@ -9,7 +13,7 @@ mysql_user = 'root'
 mysql_password = '1234' 
 
 # recreating the URL connection
-connection_url = 'mysql+mysqlconnector://{user}:{password}@{url}'.format(
+connection_url = 'mysql+pymysql://{user}:{password}@{url}'.format(
     user=mysql_user,
     password=mysql_password,
     url=mysql_url,
