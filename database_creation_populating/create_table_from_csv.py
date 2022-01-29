@@ -11,7 +11,6 @@ mysql_password = '1234'
 database_name = 'netflix'
 
 # recreating the URL connection
-#connection_url = 'mysql+mysqlconnector://{user}:{password}@{url}/{database}'.format(
 connection_url = 'mysql+pymysql://{user}:{password}@{url}/{database}?charset=utf8&local_infile=1'.format(
     user=mysql_user,
     password=mysql_password,
