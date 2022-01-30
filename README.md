@@ -73,16 +73,6 @@ The movie titles (from the csv data file) are now loaded in the "titles" table. 
 ```
 
 
-# Constructing new database tables from the "titles" table
-We could use the "titles" table as our relational database, but in order to separate the different information stored in this "titles" table and construct it in a logical way  we model the following database tables:
-```
-show table (SHOW_ID (PRIMARY KEY), TYPE, TITLE, COUNTRY, DATE_ADDED, RELEASE_YEAR, DURATION, DESCRIPTION)
-Rating table (SHOW_ID (PRIMARY KEY), RATING)
-crew table (SHOW_ID (PRIMARY KEY), DIRECTOR, CAST) 
-```
-
------ to be completed ----
-
 
 
 # The Fast API image
