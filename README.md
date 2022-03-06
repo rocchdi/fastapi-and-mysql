@@ -33,21 +33,17 @@ docker run --name mysql_database -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -p 330
 
 # Loading the csv data file into our Netflix database
 In this step we create a database called Netflix and then load the csv kaggle file into a relational database table called "titles" using the "'LOAD DATA LOCAL INFILE" sql order.
-we use python scripts in order to create and populate the database table.
-
-```
-LOAD DATA LOCAL INFILE "titles.csv" INTO TABLE titles FIELDS TERMINATED BY ";" LINES TERMINATED BY "\\n" STARTING BY "s" IGNORE 1 LINES;
-```
+we use the following python scripts to create and populate the database table.
 
 
-# How to run the database loading  in your machine using a python virtual environment
+# How to create and populate the database in your machine using a python virtual environment
 
-create a new python virtual environment, install the requirements (see database_creation_populating folder) :
+first create a new python virtual environment, install the requirements (see database_creation_populating folder) :
 ```
 pip install -r requirements_sql.txt 
 ```
 
-and then install the titles.csv" file and run the following : 
+then copy the titles.csv" file in your environment  and run the following : 
 
 ```
 python3 create_database.py
@@ -77,7 +73,7 @@ The movie titles (from the csv data file) are now loaded in the "titles" table. 
 
 # The Fast API image
 We use a Fastapi API in order to query our Netflix Mysql database
-For example, we can display some movie titles i from the database or find the country where a movie has been made
+For example, we can display some movie titles from the database or find the country where a movie has been made
 The FAst API image is also created and puched to the DockerHub repository : 
 ```
 rocchdi/apimysql:1.0.0
@@ -113,7 +109,12 @@ This will return the 10 first movie titles in the Netflix database
 you can also check the other endpoints :
 ```
 /home : Welcome message
-/request : to enter a sql request order
+/recent : 10 recent titles from 2021
+/bytype : Display the number of titles by type
+/byrating : Display the number of titles by rating
+/bycountry : Display the number of titles by rating
+/india : Display 10 titles from india 
+/us : Display 10 titles from united states
 
 ```
 
@@ -125,7 +126,7 @@ In the docker folder you can find the following file :
 ```
 setup.sh
 ```
-it contains the cammands that allow you use the mysql image and run docker-compose to create and populate thye Netflix database.
+it contains the cammands that allow you use the mysql image and run docker-compose to create and populate the Netflix database.
 the docker compose displays a SUCESS status if all the steps are successfull.
 
 
