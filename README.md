@@ -30,12 +30,6 @@ use the following docker command line in order to create a mysql container
 docker run --name mysql_database -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -p 33060:33060 -d mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --local-infile=1
 ```
 
-set the mysql_password variable
-```
-export mysql_password=1234
-```
-
-
 # Loading the csv data file into our Netflix database
 In this step we create a database called Netflix and then load the csv kaggle file into a relational database table called "titles" using the "'LOAD DATA LOCAL INFILE" sql order.
 we use the following python scripts to create and populate the database table.
@@ -96,6 +90,11 @@ pip install -r requirements.txt
 ```
 Copy the main.py file (see fastapi_mysql folder)
 The Mysql database container is supposed to be running in your machine and the Netflix database created and populated. 
+
+set the mysql_password variable
+```
+export mysql_password=1234
+```
 
 To run the API : 
 ```
