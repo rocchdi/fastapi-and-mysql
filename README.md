@@ -112,9 +112,8 @@ you can also check the other endpoints :
 /recent : 10 recent titles from 2021
 /bytype : number of titles by type
 /byrating : number of titles by rating
-/bycountry : number of titles by rating
+/bycountry : number of titles by country 
 /india : 10 titles from india 
-/us : 10 titles from united states
 
 ```
 
