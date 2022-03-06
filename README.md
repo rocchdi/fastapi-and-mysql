@@ -110,11 +110,11 @@ you can also check the other endpoints :
 ```
 /home : Welcome message
 /recent : 10 recent titles from 2021
-/bytype : Display the number of titles by type
-/byrating : Display the number of titles by rating
-/bycountry : Display the number of titles by rating
-/india : Display 10 titles from india 
-/us : Display 10 titles from united states
+/bytype : number of titles by type
+/byrating : number of titles by rating
+/bycountry : number of titles by rating
+/india : 10 titles from india 
+/us : 10 titles from united states
 
 ```
 
