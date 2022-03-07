@@ -38,7 +38,7 @@ we use the following python scripts to create and populate the database table.
 # How to create and populate the database in your machine using a python virtual environment
 
 first create a new python virtual environment, install the requirements (see database_creation_populating folder) :
-```
+``e
 pip install -r requirements_sql.txt 
 ```
 
@@ -51,7 +51,25 @@ python3 create_table_from_csv.py
 
 
 # The Table Schema and Content
-The movie titles (from the csv data file) are now loaded in the "titles" table. Here is an example of the table schema and content :
+The movie titles (from the csv data file) are now loaded in the "titles" table. Here is the table schema :
+
+```
+"SHOW_ID": String, primary_key
+"TYPE": String 
+"TITLE": String 
+"DIRECTOR" : String 
+"CAST": String 
+"COUNTRY": String 
+"DATE_ADDED": String 
+"RELEASE_YEAR": SmallInteger 
+"RATING": String 
+"DURATION": String
+"LISTED_IN": String 
+"DESCRIPTION": String 
+```
+
+Here is an example of the table content :
+
 ```
 "SHOW_ID": "s5"
 "TYPE": "TV Show"
@@ -66,8 +84,6 @@ The movie titles (from the csv data file) are now loaded in the "titles" table. 
 "LISTED_IN": "International TV Shows, Romantic TV Shows, TV Comedies"
 "DESCRIPTION": "In a city of coaching centers known to train India’s finest collegiate minds, an earnest but unexceptional student and his friends navigate campus life."                           
 ```
-
-
 
 
 # The Fast API image
