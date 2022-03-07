@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '1234'
+    ports:
+      - '3306:3306'
+      - '33060:33060'
+    command:
+      - '--character-set-server=utf8mb4'
+      - '--collation-server=utf8mb4_unicode_ci'
+      - '--local-infile=1'
+    networks:
+      - my_network
+  mysql_init:
+    image: mysql_init
+    container_name: mysql_init
+    networks:
+      - my_network
+    restart: on-failure
+    depends_on:
+      - db
+
+networks:
+  my_network:
+
