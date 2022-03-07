@@ -38,7 +38,7 @@ we use the following python scripts to create and populate the database table.
 # How to create and populate the database in your machine using a python virtual environment
 
 first create a new python virtual environment, install the requirements (see database_creation_populating folder) :
-``e
+```
 pip install -r requirements_sql.txt 
 ```
 
