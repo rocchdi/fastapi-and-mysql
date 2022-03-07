@@ -123,7 +123,7 @@ you can also check the other endpoints :
 
 
 
-# How to use The Docker compose to reload and initilize the database from the csv file 
+# How to use The Docker compose to reload and initialize the database from the csv file 
 
 In the mysql_docker_compose folder you can find the following file :
 ```
